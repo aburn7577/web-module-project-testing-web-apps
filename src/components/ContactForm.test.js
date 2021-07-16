@@ -22,9 +22,9 @@ test('renders ONE error message if user enters less then 5 characters into first
     render(<ContactForm />)
 
     const firstNameInput = screen.getByLabelText(/First Name/i)
-    userEvent.type(firstNameInput, firstName)
+    userEvent.type(firstNameInput, firstName)//trigger state change. so use await because getting a promise due to state change
 
-    const error = screen.getByTestId('error')
+    const error = await screen.getByTestId('error')
     expect(error).toHaveTextContent('Error: firstName must have at least 5 characters.')
 
 });
